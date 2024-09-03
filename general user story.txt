@@ -1,0 +1,42 @@
+User Story: Create and Manage Tasks
+
+As a user
+I want to create, view, edit, and delete tasks
+So that I can effectively manage my daily to-do list and keep track of what needs to be done.
+
+Acceptance Criteria:
+
+    Create Task:
+        The user can click on a "New Task" button.
+        The user can enter a task title and optional description.
+        The user can assign a due date to the task.
+        The user can save the task, which will then appear in the task list.
+
+    View Task:
+        The user can see a list of all tasks, displaying the title and due date.
+        The user can click on a task to view its details, including the description and due date.
+
+    Edit Task:
+        The user can click on a task in the list to edit its title, description, and due date.
+        The user can save the changes, which will update the task in the list.
+
+    Delete Task:
+        The user can delete a task from the list.
+        A confirmation prompt will appear before the task is deleted.
+        Once confirmed, the task is removed from the list.
+
+    Task Completion:
+        The user can mark a task as completed.
+        Completed tasks will appear with a strikethrough in the list and can be filtered out.
+
+    Task Filtering:
+        The user can filter tasks to show all, only pending, or only completed tasks.
+        The user can sort tasks by due date or creation date.
+
+    Responsive Design:
+        The application is fully responsive and accessible on mobile devices and desktops.
+
+Additional Notes:
+
+    The task list should update in real-time when a task is added, edited, or deleted.
+    The application should provide clear feedback for actions such as task creation, editing, and deletion.

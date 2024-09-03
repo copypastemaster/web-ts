@@ -1,13 +1,13 @@
-import sql from 'mssql'
+import sql, { ConnectionPool } from 'mssql'
 require('dotenv').config()
 
 const defaultDBConfig = {
   driver: 'mssql',
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  server: process.env.DB_SERVER,
+  user: process.env.DB_USER!,
+  password: process.env.DB_PASSWORD!,
+  server: process.env.DB_SERVER!,
   port: 2019,
-  database: process.env.DB_DBNAME,
+  database: process.env.DB_DBNAME!,
   requestTimeout: 3600000, // 1hour
   pool: {
     max: 1,
@@ -22,29 +22,35 @@ const defaultDBConfig = {
   }
 }
 
-let conn = null
+let conn: ConnectionPool | null = null
 
-const connect = async (newConfig: string) => {
+const connect = async () => {
   try {
-    conn = await new sql.ConnectionPool(newConfig || defaultDBConfig).connect()
-  }
-  catch (err) {
-    throw new Error(err.message)
+    conn = await new sql.ConnectionPool(defaultDBConfig).connect();
+  } catch (err) {
+    if (err instanceof Error) {
+      throw new Error(err.message);
+    } else {
+      throw new Error('Unknown error during connection.');
+    }
   }
 }
 
-const getConnection = async () => {
+const getConnection = async (): Promise<ConnectionPool> => {
   try {
     if (!conn) {
-      await connect('') 
+      await connect();
     }
   
-    return conn
+    return conn as ConnectionPool;
+  } catch (err) {
+    if (err instanceof Error) {
+      throw new Error(err.message);
+    } else {
+      throw new Error('Unknown error during getting connection.');
+    }
   }
-  catch (err) {
-    throw new Error(err.message)
-  }
-}
+};
 
 export default getConnection
 
