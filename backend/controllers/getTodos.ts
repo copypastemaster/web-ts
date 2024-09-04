@@ -8,7 +8,9 @@ const getTodos = asyncHandler( async (req: Request, res: Response, next: NextFun
   const pool: ConnectionPool = await getConnection();
   const request = await pool.request().query(`
     SELECT id, todos, [date], IsCompleted, IsDeleted
-    FROM tblTodos  
+    FROM tblTodos
+    WHERE IsCompleted = 0
+      AND IsDeleted = 0  
   `)
 
   const result: Todos[] | null = request.recordset;

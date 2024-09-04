@@ -23,7 +23,7 @@ const updateTodo = asyncHandler(async (req: Request, res: Response, next: NextFu
   if (IsCompleted !== undefined) request.input('IsCompleted', sql.Bit, IsCompleted)
   if (IsDeleted !== undefined) request.input('IsDeleted', sql.Bit, IsDeleted)
 
-  let query = 'UPDATE tblTodos SET '
+  let query: string = 'UPDATE tblTodos SET '
 
   if (todos !== undefined) query += 'todos = @todos, '
   if (date !== undefined) query += '[date] = @date, '

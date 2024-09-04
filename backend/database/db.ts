@@ -9,6 +9,7 @@ const defaultDBConfig = {
   port: 2019,
   database: process.env.DB_DBNAME!,
   requestTimeout: 3600000, // 1hour
+  
   pool: {
     max: 1,
     min: 1,
