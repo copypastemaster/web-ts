@@ -9,13 +9,12 @@ interface Todo {
   IsDeleted: boolean 
 }
 
-type ErrorTypes = number | string | null
-
 const Home: React.FC = () => {
   const [data, setData] = useState<Todo[]>([]);
-  const [error, setError] = useState<ErrorTypes>(null);
+  const [notFound, setNotFound] = useState<string | null>(null);
+  const [error, setError] = useState<Error | string>('');
 
-  const api = '/api/todos';
+  const api = '/api/todos/?completed=false&deleted=false';
 
   useEffect(() => {
     (async(): Promise<void> => {
@@ -27,26 +26,33 @@ const Home: React.FC = () => {
           }
         })
 
-        if (!response.ok) setError(response.status);
+        if (!response.ok || response.status === 404) {
+          setNotFound('No todos found.')
+          return;
+        };
+
         const result: Todo[] = await response.json();
+        console.log('Result: ', result)
         setData(result)
       } 
       catch(err) {
         if (err instanceof Error) {
-          setError(err.message)
+          setError(err)
         }
       }
     })()
-}, [])
+  }, [])
+
 
   return (
     <>
       <ul>
-        {data.map((todo) => (
-          <li key={todo.id}>{todo.todos}, created: {formatDate(todo.date)}</li>
-        ))}
+          {data.map((todo) => (
+          <li key={todo.id}>todo: {todo.todos} created at: {formatDate(todo.date)}</li>
+          ))}
       </ul>
-      {error && <p style={{ color: 'red' }}>Error: {error}</p>}
+      <p> {notFound} </p>
+      <p> {error.toString()} </p>
     </>
   );
 };

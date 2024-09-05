@@ -16,7 +16,7 @@ const postTodo = asyncHandler(async(req: Request, res: Response, next: NextFunct
                   .input('IsDeleted', sql.Bit, IsDeleted)
                   .query(`
                       INSERT INTO tblTodos ([todos], [date], [IsCompleted], [IsDeleted])
-                      VALUES (@todo, @date, @IsCompleted, @IsDeleted)
+                      VALUES (ISNULL(@todo, ''), @date, @IsCompleted, @IsDeleted)
                     `)
 
   const createdTodo = request.recordset[0]
