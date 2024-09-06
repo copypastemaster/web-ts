@@ -24,6 +24,7 @@
 * Express
 * Node 
 * React
+* T-SQL (MSSQL)
 
 ## Styling ##
 * shadcn/ui
