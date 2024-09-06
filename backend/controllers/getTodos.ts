@@ -6,7 +6,8 @@ import getFinishedTodos from '../models/getFinishedTodosModel';
 import Todos from '../types/todoSchema';
 
 
-const getTodos = asyncHandler( async (req: Request, res: Response, next: NextFunction): Promise<void>=> {
+const getTodos = asyncHandler( 
+  async (req: Request, res: Response, next: NextFunction): Promise<void>=> {
   const result: Todos[] | null = await getTodosFromDb();
 
   if (result?.length === 0) {
@@ -16,7 +17,8 @@ const getTodos = asyncHandler( async (req: Request, res: Response, next: NextFun
   }
 })
 
-const getDeletedTodo = asyncHandler( async (req: Request, res: Response, next: NextFunction): Promise<void>  => {
+const getDeletedTodo = asyncHandler( 
+  async (req: Request, res: Response, next: NextFunction): Promise<void>  => {
   const result: Todos[] | null = await getDeletedTodos();
   
   if (result?.length === 0) {
@@ -26,7 +28,8 @@ const getDeletedTodo = asyncHandler( async (req: Request, res: Response, next: N
   }
 })
 
-const getFinishedTodo = asyncHandler( async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+const getFinishedTodo = asyncHandler( 
+  async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   const result: Todos[] | null = await getFinishedTodos();
 
   if (result?.length === 0) {

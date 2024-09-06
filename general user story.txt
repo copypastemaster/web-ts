@@ -30,8 +30,8 @@ Acceptance Criteria:
         Completed tasks will appear with a strikethrough in the list and can be filtered out.
 
     Task Filtering:
-        The user can filter tasks to show all, only pending, or only completed tasks.
-        The user can sort tasks by due date or creation date.
+        The user has access to all tasks/todo.
+        The user has access to finished and deleted todos.
 
     Responsive Design:
         The application is fully responsive and accessible on mobile devices and desktops.
