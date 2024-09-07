@@ -11,11 +11,11 @@ const Sidebar: React.FC = () => {
         <TooltipComponent icon = { <Home className='focus:bg-slate-300'/> } content='Todos' />
       </Link>
 
-      <Link to ='/deleted'>
+      <Link to ='/finished'>
         <TooltipComponent icon = { <CheckCheck /> } content='Finished todos' /> 
       </Link>
 
-      <Link to ='/finished'>
+      <Link to ='/deleted'>
         <TooltipComponent icon = { <Trash2 /> } content='Deleted todos' />
       </Link>
     </div>

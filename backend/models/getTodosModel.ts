@@ -8,6 +8,8 @@ const getTodosFromDb = async (): Promise<Todos[] | null> => {
   const query =`
     SELECT id, todos, [date], isCompleted, isDeleted
     FROM tblTodos
+    WHERE isCompleted = 0
+      AND isDeleted = 0
   `
 
   try {
